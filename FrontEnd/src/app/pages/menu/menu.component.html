@@ -1,0 +1,90 @@
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">ProPruebas</div>
+            <ul class="nav-links">
+                <li><a>Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        @if (option === 0) {
+        <section class="hero">
+            <h1>Welcome Usuario1</h1>
+            <p>what do you want?</p>
+            <div class="btn-containers">
+                <button class="btn" id="btnOp1" type="button" (click)="option = 1">Search User<i
+                        class='bx bx-search'></i></button>
+                <button class="btn" id="btnOp2" type="button" (click)="option = 2">Create User <i
+                        class='bx bx-user-plus'></i></button>
+            </div>
+        </section>
+
+        }@else if (option === 1) {
+        <section class="hero">
+            <form class="form">
+                <h1>Serach User</h1>
+                <label for="nit">Nit</label>
+                <input id="nit" type="number" name="nit" required>
+                <div class="btn-search">
+                    <button id="btnCancel" class="btn" type="button" (click)="option = 0">Cancel <i
+                            class='bx bx-x'></i></button>
+                    <button id="btnSearch" class="btn" type="button">Search<i class='bx bx-search'></i></button>
+                </div>
+
+            </form>
+        </section>
+        }@else if (option === 2) {
+
+        <section class="hero">
+            <form class="form">
+                <h1>Create User</h1>
+                <div class="imputs-container">
+                    <div>
+                        <label for="nit">Nit</label>
+                        <input id="nit" type="number" name="nit" required>
+
+                        <label for="fistName">Fist Name</label>
+                        <input id="fistName" type="text" name="fistName" required>
+
+                        <label for="middleName">Middle Name</label>
+                        <input id="middleName" type="text" name="middleName">
+
+                        <label for="surname">Surname</label>
+                        <input id="surname" type="text" name="surname" required>
+                    </div>
+
+                    <div>
+                        <label for="secondSurname">Second Surname</label>
+                        <input id="secondSurname" type="text" name="secondSurname" required>
+
+                        <label for="birthday">Birthday</label>
+                        <input id="birthday" type="date" name="birthday" required>
+
+                        <label for="cellphone">Cellphone number</label>
+                        <input id="cellphone" type="number" name="cellphone" required>
+
+                        <label for="email">Email</label>
+                        <input id="email" type="email" name="email" required>
+                    </div>
+                </div>
+                <div class="btn-search">
+                    <button id="btnCancel" class="btn" type="button" (click)="option = 0">Cancel <i
+                            class='bx bx-x'></i></button>
+                    <button id="btnCreate" class="btn" type="button">Create<i class='bx bx-search'></i></button>
+                </div>
+
+            </form>
+        </section>
+
+        }
+    </main>
+
+
+    <footer>
+        <p>&copy; 2024 ProPruebas. All rights reserved.</p>
+    </footer>
+</body>

@@ -1,0 +1,188 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+/* Navbar */
+header {
+    background-color: #333;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    margin: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+main {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+}
+
+/* .hero {
+    display: flex;
+    justify-content: center;
+} */
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #555;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+footer p {
+    margin: 0;
+}
+
+/* ---------- */
+
+.btn-containers {
+    display: flex;
+    gap: 20px;
+}
+
+.btn {
+    margin-top: 20px;
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn i {
+    font-size: 18px;
+}
+
+#btnOp1:hover,
+#btnSearch:hover {
+    background-color: #2d7ad3;
+}
+
+#btnOp1:focus,
+#btnSearch:hover {
+    outline: none;
+    box-shadow: 0 0 5px #2b74c7;
+}
+
+#btnOp2:hover,
+#btnCreate:hover {
+    background-color: #48c74f;
+}
+
+#btnOp2:focus,
+#btnCreate:focus {
+    outline: none;
+    box-shadow: 0 0 5px #48c74f;
+}
+
+#btnCancel:hover {
+    background-color: #cc3434;
+}
+
+#btnCancel:focus {
+    outline: none;
+    box-shadow: 0 0 5px #d41c1c;
+}
+
+/* ------- */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form label {
+    display: block;
+    margin: 10px 0 5px;
+    color: #333;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.btn-search {
+    display: flex;
+    gap: 20px;
+}
+
+.imputs-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
