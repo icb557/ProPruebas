@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { PersonService } from '../../services/person.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -14,12 +16,26 @@ export class LoginComponent {
 
   username = ''
   password = ''
-  constructor(private router: Router) {
+  constructor(private router: Router, private _personService: PersonService) {
 
   }
   login() {
     if (this.validateData()) {
-      this.router.navigate(['/menu'])
+      this._personService.login({ userName: this.username, password: this.password }).subscribe({
+        next: (data) => {
+          localStorage.setItem('token', data.token)
+          this.router.navigate(['/menu'])
+        }, error: (error: HttpErrorResponse) => {
+          Swal.fire({
+            title: "Error Login",
+            text: error.error.err,
+            icon: "error",
+            showConfirmButton: false,
+            timer: 1200
+          })
+        }
+      })
+
     }
   }
 

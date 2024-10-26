@@ -17,7 +17,7 @@ export class PersonController {
       const { nit, firstName, middleName, lastName1, lastName2, birthdate, phoneNumber, email } = req.body
       const person = await Person.findByPk(nit)
       if (!person) {
-        const fullName = firstName + lastName1 + lastName2
+        const fullName = firstName + lastName1.toLowerCase() + lastName2.toLowerCase()
         const userName = fullName.charAt(0).toUpperCase() + fullName.substring(1, 7) + Math.floor(Math.random() * 10)
         const password = await bcrypt.hash('P@ssw0rd', 12)
         const newPerson = await Person.create({

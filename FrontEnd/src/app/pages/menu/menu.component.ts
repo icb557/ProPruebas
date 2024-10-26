@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-menu',
@@ -13,4 +14,16 @@ export class MenuComponent {
 
   }
   option = 0
+
+  logOut() {
+    localStorage.removeItem('token')
+    Swal.fire({
+      title: 'Good bye!!',
+      icon: "success",
+      showConfirmButton: false,
+      timer: 1200
+    }).then(() => {
+      this.router.navigate([''])
+    })
+  }
 }
