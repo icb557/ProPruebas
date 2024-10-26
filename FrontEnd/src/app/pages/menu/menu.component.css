@@ -58,8 +58,7 @@ main {
 }
 
 /* .hero {
-    display: flex;
-    justify-content: center;
+    position: relative;
 } */
 
 .hero h1 {
@@ -116,12 +115,14 @@ footer p {
 }
 
 #btnOp1:hover,
-#btnSearch:hover {
+#btnSearch:hover,
+#btnEdit:hover {
     background-color: #2d7ad3;
 }
 
 #btnOp1:focus,
-#btnSearch:hover {
+#btnSearch:focus,
+#btnEdit:focus {
     outline: none;
     box-shadow: 0 0 5px #2b74c7;
 }
@@ -137,11 +138,15 @@ footer p {
     box-shadow: 0 0 5px #48c74f;
 }
 
-#btnCancel:hover {
+#btnCancel:hover,
+#btnDelete:hover,
+#btnExit:hover {
     background-color: #cc3434;
 }
 
-#btnCancel:focus {
+#btnCancel:focus,
+#btnDelete:focus,
+#btnExit:focus {
     outline: none;
     box-shadow: 0 0 5px #d41c1c;
 }
@@ -172,6 +177,16 @@ footer p {
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.form .label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.form .content {
+    /* min-width: 280px; */
+    margin-bottom: 10px;
 }
 
 .btn-search {

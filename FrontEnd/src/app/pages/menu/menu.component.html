@@ -5,6 +5,7 @@
             <div class="logo">ProPruebas</div>
             <ul class="nav-links">
                 <li><a>Contact</a></li>
+                <li><a>Log out</a></li>
             </ul>
         </nav>
     </header>
@@ -32,7 +33,7 @@
                 <div class="btn-search">
                     <button id="btnCancel" class="btn" type="button" (click)="option = 0">Cancel <i
                             class='bx bx-x'></i></button>
-                    <button id="btnSearch" class="btn" type="button">Search<i class='bx bx-search'></i></button>
+                    <button id="btnSearch" class="btn" (click)="option = 3">Search<i class='bx bx-search'></i></button>
                 </div>
 
             </form>
@@ -80,6 +81,47 @@
             </form>
         </section>
 
+        }@else if (option === 3) {
+        <section class="hero">
+            <div class="form">
+                <h1>User</h1>
+                <p class="label">Nit</p>
+                <p class="content">1034567890</p>
+                <div class="imputs-container">
+                    <div>
+                        <p class="label">Fist Name</p>
+                        <p class="content">Juan</p>
+
+                        <p class="label">Middle Name</p>
+                        <p class="content">José</p>
+
+                        <p class="label">Surname</p>
+                        <p class="content">Estrada</p>
+                    </div>
+
+                    <div>
+                        <p class="label">Second Surname</p>
+                        <p class="content">Vélez</p>
+
+                        <p class="label">Birthday</p>
+                        <p class="content">21/12/2003</p>
+
+                        <p class="label">Cellphone number</p>
+                        <p class="content">3147329725</p>
+
+                    </div>
+                </div>
+                <p class="label">Email</p>
+                <p class="content">{{'juan_email@elpoli.edu.co'}}</p>
+                <div class="btn-search">
+                    <button id="btnDelete" class="btn" type="button">Delete <i class='bx bx-x'></i></button>
+                    <button id="btnEdit" class="btn" type="button">Edit<i class='bx bxs-edit'></i></button>
+                </div>
+                <button id="btnExit" class="btn" type="button" (click)="option = 0">Back<i
+                        class='bx bxs-arrow-from-right'></i></button>
+
+            </div>
+        </section>
         }
     </main>
 
