@@ -43,7 +43,9 @@ export class PersonController {
   getPerson = async (req, res) => {
     try {
       const { nit } = req.params
-      const person = await Person.findByPk(nit)
+      const person = await Person.findByPk(nit, {
+        attributes: { exclude: ['password', 'createdAt', 'updatedAt'] }
+      })
       if (person) {
         res.status(200).json(person)
       } else {
