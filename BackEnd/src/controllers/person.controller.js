@@ -100,7 +100,7 @@ export class PersonController {
       const token = createToken({ data: { userName: cred.userName, nit: cred.nit } })
       return res.json({ token })
     } catch (error) {
-      return res.status(500).json({ mesaage: error.message })
+      return res.status(500).json({ message: error.message })
     }
   }
 }

@@ -21,4 +21,8 @@ export class PersonService {
   getPerson(nit: string): Observable<Person> {
     return this.http.get<Person>(`${this.myAppUrl}${this.myApiUrl}/${nit}`)
   }
+
+  deletePerson(nit: string): Observable<any> {
+    return this.http.delete<any>(`${this.myAppUrl}${this.myApiUrl}/${nit}`)
+  }
 }

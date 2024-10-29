@@ -119,7 +119,8 @@
                 <p class="label">Email</p>
                 <p class="content">{{person.email}}</p>
                 <div class="btn-search">
-                    <button id="btnDelete" class="btn" type="button">Delete <i class='bx bx-x'></i></button>
+                    <button id="btnDelete" class="btn" type="button" (click)="deletePerson()">Delete <i
+                            class='bx bx-x'></i></button>
                     <button id="btnEdit" class="btn" type="button">Edit<i class='bx bxs-edit'></i></button>
                 </div>
                 <button id="btnExit" class="btn" type="button" (click)="option = 0">Back<i

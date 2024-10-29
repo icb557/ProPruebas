@@ -73,4 +73,28 @@ export class MenuComponent {
     })
   }
 
+  deletePerson() {
+    Swal.fire({
+      title: "Delete Person",
+      text: 'are you sure you want to delete it?',
+      showDenyButton: true,
+      confirmButtonText: "Yes, delete it",
+      denyButtonText: `Cancel`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._personService.deletePerson(String(this.nit)).subscribe({
+          next: () => {
+            Swal.fire("Person Deleted!", "", "success").then(() => {
+              this.option = 0
+            })
+          },
+          error: () => {
+            Swal.fire("Error Deleting Person", "", "error");
+          }
+        })
+
+      }
+    });
+  }
+
 }
