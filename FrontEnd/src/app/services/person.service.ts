@@ -29,4 +29,8 @@ export class PersonService {
   createPerson(person: Person): Observable<any> {
     return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}`, person)
   }
+
+  updatePerson(nit: string, person: Person): Observable<Person> {
+    return this.http.put<Person>(`${this.myAppUrl}${this.myApiUrl}/${nit}`, person)
+  }
 }

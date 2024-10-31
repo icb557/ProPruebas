@@ -114,8 +114,7 @@ export class MenuComponent {
         this._personService.deletePerson(String(this.searchForm.value.nit!)).subscribe({
           next: () => {
             Swal.fire("Person Deleted!", "", "success").then(() => {
-              this.option = 0
-              this.searchForm.reset()
+              this.goBack()
             })
           },
           error: () => {
@@ -127,23 +126,14 @@ export class MenuComponent {
     });
   }
 
+  goBack() {
+    this.option = 0
+    this.searchForm.reset()
+  }
+
   create() {
     if (!this.personForm.valid) {
-      const invalidfield: any[] = []
-      Object.keys(this.personForm.controls).forEach(field => {
-        const control = this.personForm.get(field)
-        if (control && control.invalid) {
-          invalidfield.push({ field, errors: control.errors })
-        }
-      });
-      console.log(invalidfield)
-      Swal.fire({
-        title: 'Invalid Form',
-        text: 'some field is wrong or invalid',
-        icon: "error",
-        showConfirmButton: false,
-        timer: 1200
-      })
+      this.checkErrorForm()
       return
     }
 
@@ -178,6 +168,95 @@ export class MenuComponent {
           timer: 1200
         })
       }
+    })
+  }
+
+  updateUser() {
+    this.option = 4
+    this.personForm.controls['nit'].disable();
+    this.personForm.setValue({
+      nit: this.person.nit,
+      firstName: this.person.firstName,
+      middleName: this.person.middleName!,
+      lastName1: this.person.lastName1,
+      lastName2: this.person.lastName2,
+      birthdate: this.person.birthdate,
+      phoneNumber: this.person.phoneNumber,
+      email: this.person.email
+    });
+  }
+
+  resetForm() {
+    this.personForm.controls['nit'].enable();
+    this.personForm.setValue({
+      nit: '',
+      firstName: '',
+      middleName: '',
+      lastName1: '',
+      lastName2: '',
+      birthdate: '',
+      phoneNumber: '',
+      email: ''
+    });
+  }
+
+  saveUpdateUser() {
+    if (!this.personForm.valid) {
+      this.checkErrorForm()
+      return
+    }
+
+    const updatedPerson: Person = {
+      nit: String(this.person.nit),
+      firstName: this.personForm.value.firstName!,
+      middleName: this.personForm.value.middleName!,
+      lastName1: this.personForm.value.lastName1!,
+      lastName2: this.personForm.value.lastName2!,
+      birthdate: this.personForm.value.birthdate!,
+      phoneNumber: String(this.personForm.value.phoneNumber!),
+      email: this.personForm.value.email!
+    }
+
+    this._personService.updatePerson(updatedPerson.nit, updatedPerson).subscribe({
+      next: () => {
+        Swal.fire({
+          title: "User Updated successfully",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1200
+        }).then(() => {
+          Object.assign(this.person, updatedPerson);
+          this.option = 3
+          this.resetForm()
+        })
+      },
+      error: (e: HttpErrorResponse) => {
+        Swal.fire({
+          title: "Error Updating User",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 1200
+        })
+      }
+    })
+
+  }
+
+  checkErrorForm() {
+    const invalidfield: any[] = []
+    Object.keys(this.personForm.controls).forEach(field => {
+      const control = this.personForm.get(field)
+      if (control && control.invalid) {
+        invalidfield.push({ field, errors: control.errors })
+      }
+    });
+    console.log(invalidfield)
+    Swal.fire({
+      title: 'Invalid Form',
+      text: 'some field is wrong or invalid',
+      icon: "error",
+      showConfirmButton: false,
+      timer: 1200
     })
   }
 
