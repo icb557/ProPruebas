@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation       Inicio de sesión ingresando usuario y contraseña
 
-Library             SeleniumLibrary
+Library    SeleniumLibrary
 
 *** Keywords ***
 Login
@@ -13,3 +13,5 @@ Login
     Input Text   xpath=//*[@id="password"]  ${password}
     sleep  1s
     Click Button   xpath=//*[@id="btnLogin"]
+    sleep  1s
+    Page Should Contain    Welcome!
