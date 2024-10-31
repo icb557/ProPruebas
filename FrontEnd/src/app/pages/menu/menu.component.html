@@ -26,10 +26,10 @@
 
         }@else if (option === 1) {
         <section class="hero">
-            <form class="form">
+            <form class="form" [formGroup]="searchForm">
                 <h1>Serach User</h1>
                 <label for="nit">Nit</label>
-                <input id="nit" type="number" name="nit" [(ngModel)]="nit" required>
+                <input id="nit" type="number" name="nit" formControlName="nit" required>
                 <div class="btn-search">
                     <button id="btnCancel" class="btn" type="button" (click)="option = 0">Cancel <i
                             class='bx bx-x'></i></button>
@@ -42,41 +42,43 @@
         }@else if (option === 2) {
 
         <section class="hero">
-            <form class="form">
+            <form class="form" [formGroup]="personForm">
                 <h1>Create User</h1>
                 <div class="imputs-container">
                     <div>
                         <label for="nit">Nit</label>
-                        <input id="nit" type="number" name="nit" required>
+                        <input id="nit" type="number" name="nit" formControlName="nit" required>
 
                         <label for="fistName">Fist Name</label>
-                        <input id="fistName" type="text" name="fistName" required>
+                        <input id="fistName" type="text" name="fistName" formControlName="firstName" required>
 
                         <label for="middleName">Middle Name</label>
-                        <input id="middleName" type="text" name="middleName">
+                        <input id="middleName" type="text" name="middleName" formControlName="middleName">
 
-                        <label for="surname">Surname</label>
-                        <input id="surname" type="text" name="surname" required>
+                        <label for="lastName1">Surname</label>
+                        <input id="lastName1" type="text" name="lastName1" formControlName="lastName1" required>
                     </div>
 
                     <div>
-                        <label for="secondSurname">Second Surname</label>
-                        <input id="secondSurname" type="text" name="secondSurname" required>
+                        <label for="lastName2">Second Surname</label>
+                        <input id="lastName2" type="text" name="lastName2" formControlName="lastName2" required>
 
                         <label for="birthday">Birthday</label>
-                        <input id="birthday" type="date" name="birthday" required>
+                        <input id="birthday" type="date" name="birthday" formControlName="birthdate" [max]="maxDate"
+                            required>
 
-                        <label for="cellphone">Cellphone number</label>
-                        <input id="cellphone" type="number" name="cellphone" required>
+                        <label for="phoneNumber">Cellphone number</label>
+                        <input id="phoneNumber" type="number" name="phoneNumber" formControlName="phoneNumber" required>
 
                         <label for="email">Email</label>
-                        <input id="email" type="email" name="email" required>
+                        <input id="email" type="email" name="email" formControlName="email" required>
                     </div>
                 </div>
                 <div class="btn-search">
                     <button id="btnCancel" class="btn" type="button" (click)="option = 0">Cancel <i
                             class='bx bx-x'></i></button>
-                    <button id="btnCreate" class="btn" type="button">Create<i class='bx bx-search'></i></button>
+                    <button id="btnCreate" class="btn" type="button" (click)="create()">Create<i
+                            class='bx bx-search'></i></button>
                 </div>
 
             </form>

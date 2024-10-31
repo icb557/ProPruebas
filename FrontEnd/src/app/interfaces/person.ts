@@ -7,5 +7,5 @@ export interface Person {
     birthdate: string,
     phoneNumber: string,
     email: string,
-    userName: string
+    userName?: string
 }

@@ -19,7 +19,7 @@ export class PersonController {
       if (!person) {
         const fullName = firstName + lastName1.toLowerCase() + lastName2.toLowerCase()
         const userName = fullName.charAt(0).toUpperCase() + fullName.substring(1, 7) + Math.floor(Math.random() * 10)
-        const password = await bcrypt.hash('P@ssw0rd', 12)
+        const hashedPassword = await bcrypt.hash('P@ssw0rd', 12)
         const newPerson = await Person.create({
           nit,
           firstName,
@@ -30,13 +30,15 @@ export class PersonController {
           phoneNumber,
           email,
           userName,
-          password
+          password: hashedPassword
         })
-        return res.status(201).json({ newPerson })
+
+        const { password, createdAt, updatedAt, ...personWithoutSensitiveData } = newPerson.toJSON()
+        return res.status(201).json({ newPerson: personWithoutSensitiveData })
       }
-      return res.status(400).json({ message: 'Account already exists', forUser: true })
+      return res.status(400).json({ err: 'Account already exists' })
     } catch (error) {
-      return res.status(500).json({ message: error.message, forUser: false })
+      return res.status(500).json({ message: error.message })
     }
   }
 

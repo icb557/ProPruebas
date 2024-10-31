@@ -25,4 +25,8 @@ export class PersonService {
   deletePerson(nit: string): Observable<any> {
     return this.http.delete<any>(`${this.myAppUrl}${this.myApiUrl}/${nit}`)
   }
+
+  createPerson(person: Person): Observable<any> {
+    return this.http.post<any>(`${this.myAppUrl}${this.myApiUrl}`, person)
+  }
 }
