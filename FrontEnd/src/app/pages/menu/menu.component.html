@@ -39,15 +39,20 @@
 
             </form>
         </section>
-        }@else if (option === 2) {
+        }@else if (option === 2 || option === 4) {
 
         <section class="hero">
             <form class="form" [formGroup]="personForm">
+                @if (option === 2) {
                 <h1>Create User</h1>
+                }@else {
+                <h1>Update User</h1>
+                }
+
                 <div class="imputs-container">
                     <div>
                         <label for="nit">Nit</label>
-                        <input id="nit" type="number" name="nit" formControlName="nit" required>
+                        <input id="nit" type="number" name="nit" formControlName="nit">
 
                         <label for="fistName">Fist Name</label>
                         <input id="fistName" type="text" name="fistName" formControlName="firstName" required>
@@ -75,10 +80,17 @@
                     </div>
                 </div>
                 <div class="btn-search">
+                    @if (option === 2) {
                     <button id="btnCancel" class="btn" type="button" (click)="option = 0">Cancel <i
                             class='bx bx-x'></i></button>
                     <button id="btnCreate" class="btn" type="button" (click)="create()">Create<i
                             class='bx bx-search'></i></button>
+                    }@else {
+                    <button id="btnCancel" class="btn" type="button" (click)="option = 3">Cancel <i
+                            class='bx bx-x'></i></button>
+                    <button id="btnEdit" class="btn" type="button" (click)="saveUpdateUser()">Update<i
+                            class='bx bxs-edit'></i></button>
+                    }
                 </div>
 
             </form>
@@ -123,9 +135,10 @@
                 <div class="btn-search">
                     <button id="btnDelete" class="btn" type="button" (click)="deletePerson()">Delete <i
                             class='bx bx-x'></i></button>
-                    <button id="btnEdit" class="btn" type="button">Edit<i class='bx bxs-edit'></i></button>
+                    <button id="btnEdit" class="btn" type="button" (click)="updateUser()">Edit<i
+                            class='bx bxs-edit'></i></button>
                 </div>
-                <button id="btnExit" class="btn" type="button" (click)="option = 0">Back<i
+                <button id="btnExit" class="btn" type="button" (click)="goBack()">Back<i
                         class='bx bxs-arrow-from-right'></i></button>
 
             </div>
