@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.12.4 on win32)" generated="2024-10-30T01:15:27.388565" rpa="false" schemaversion="5">
+<suite id="s1" name="User.Tests" source="I:\documentos\Politécnico JIC\Semestre7_2024_2\PruebasYGestionDeLaConfiguracion\RbFWProPruebas\tests\user.tests.robot">
+<kw name="Connect To Database" owner="DatabaseLibrary" type="SETUP">
+<msg time="2024-10-30T01:15:28.188829" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2024-10-30T01:15:28.188829" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2024-10-30T01:15:28.198831" level="INFO">Connect to DB using : psycopg2.connect(database='ProPruebas', user='ProPruebas', password=***, host='localhost', port=5432)</msg>
+<arg>psycopg2</arg>
+<arg>${DBName}</arg>
+<arg>${DBUser}</arg>
+<arg>${DBPass}</arg>
+<arg>${DBHost}</arg>
+<arg>${DBPort}</arg>
+<doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
+Along with listed commonly used arguments (`db_name`, `db_host` etc.)
+you can set any other DB module specific parameters as key/value pairs.</doc>
+<status status="PASS" start="2024-10-30T01:15:28.188829" elapsed="0.042010"/>
+</kw>
+<test id="s1-t1" name="Buscar un usuario por NIT" line="25">
+<kw name="Call Get Request" owner="Zoomba.APILibrary">
+<msg time="2024-10-30T01:15:28.231840" level="INFO">Creating Session using : alias=getapi, url=http://localhost:3000/api, headers={'Content-Type': 'application/json', 'charset': 'UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IklzYWNjb3IyIiwibml0IjoiMTIzNDU2Nzg5MCIsImlhdCI6MTcyOTgxMjkxNH0.K-VQr-gt94iPm2EB-695JG0BVm-B1kjwvsUeQk1N90I'},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg time="2024-10-30T01:15:28.265847" level="INFO">GET Request : url=http://localhost:3000/api/person 
+ path_url=/api/person 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'charset': 'UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IklzYWNjb3IyIiwibml0IjoiMTIzNDU2Nzg5MCIsImlhdCI6MTcyOTgxMjkxNH0.K-VQr-gt94iPm2EB-695JG0BVm-B1kjwvsUeQk1N90I'} 
+ body=None 
+ </msg>
+<msg time="2024-10-30T01:15:28.266847" level="INFO">GET Response : url=http://localhost:3000/api/person 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '706', 'ETag': 'W/"2c2-p8b2SAI+r+/JVkgwa0SxUFS0ifw"', 'Date': 'Wed, 30 Oct 2024 06:15:28 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body=[{"nit":"1234567890","firstName":"isac","middleName":null,"lastName1":"cortés","lastName2":"buitrago","birthdate":"2000-02-04","phoneNumber":"3145351114","email":"isac@gmail.com","userName":"Isaccor3","password":"$2b$12$SjVlChEfgiXHTlAH.TrlEubZ0Kpn7eveKCDAEHpMlcf96HQFsf.FW","createdAt":"2024-10-24T23:36:01.367Z","updatedAt":"2024-10-24T23:36:01.367Z"},{"nit":"1987654321","firstName":"Juan","middleName":null,"lastName1":"Estrada","lastName2":"Velez","birthdate":"2001-02-04","phoneNumber":"3100243256","email":"juan@gmail.com","userName":"Juanest9","password":"$2b$12$tsGXkht0F8.AbxXY5noCaODtwz5ighVSvHJIjhZ7iyvWD2mvFJUxS","createdAt":"2024-10-30T05:11:03.028Z","updatedAt":"2024-10-30T05:11:03.028Z"}] 
+ </msg>
+<msg time="2024-10-30T01:15:28.270848" level="INFO">${resp} = {'apparent_encoding': 'utf-8', 'close': &lt;bound method Response.close of &lt;Response [200]&gt;&gt;, 'connection': &lt;requests.adapters.HTTPAdapter object at 0x0000028E4FDA2330&gt;, 'content': b'[{"nit":"1234567890"...</msg>
+<var>${resp}</var>
+<arg>${HEADERS}</arg>
+<arg>${API_URL}</arg>
+<arg>/person</arg>
+<doc>Generate a GET Request. This Keyword is basically a wrapper for get_request from the RequestsLibrary.</doc>
+<status status="PASS" start="2024-10-30T01:15:28.231840" elapsed="0.039008"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2024-10-30T01:15:28.271848" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg time="2024-10-30T01:15:28.271848" level="FAIL">200 != 300</msg>
+<arg>${resp}[status_code]</arg>
+<arg>300</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="FAIL" start="2024-10-30T01:15:28.271848" elapsed="0.000000">200 != 300</status>
+</kw>
+<kw name="Query" owner="DatabaseLibrary">
+<var>${people}</var>
+<arg>SELECT * FROM public."People";</arg>
+<arg>\</arg>
+<arg>True</arg>
+<doc>Runs a query with the ``select_statement`` and returns the result as list of rows.
+The type of row values depends on the database module -
+usually they are tuples or tuple-like objects.</doc>
+<status status="NOT RUN" start="2024-10-30T01:15:28.272849" elapsed="0.000000"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<arg>${PAGE_URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="NOT RUN" start="2024-10-30T01:15:28.272849" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2024-10-30T01:15:28.272849" elapsed="0.000000"/>
+</kw>
+<kw name="Login" owner="user.res">
+<arg>${person}[userName]</arg>
+<arg>${USER_PASSWORD}</arg>
+<status status="NOT RUN" start="2024-10-30T01:15:28.272849" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[@id="btnOp1"]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2024-10-30T01:15:28.273849" elapsed="0.000000"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>xpath=//*[@id="btnOp1"]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-10-30T01:15:28.273849" elapsed="0.000000"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[@id="nit"]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="NOT RUN" start="2024-10-30T01:15:28.273849" elapsed="0.000000"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>xpath=//*[@id="nit"]</arg>
+<arg>${person}[nit]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-10-30T01:15:28.273849" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2024-10-30T01:15:28.273849" elapsed="0.000000"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<arg>xpath=//*[@id="btnSearch"]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" start="2024-10-30T01:15:28.273849" elapsed="0.000000"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2024-10-30T01:15:28.273849" elapsed="0.000000"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="NOT RUN" start="2024-10-30T01:15:28.273849" elapsed="0.000000"/>
+</kw>
+<var name="${person}"/>
+<status status="NOT RUN" start="2024-10-30T01:15:28.272849" elapsed="0.001000"/>
+</iter>
+<var>${person}</var>
+<value>@{people}</value>
+<status status="NOT RUN" start="2024-10-30T01:15:28.272849" elapsed="0.001000"/>
+</for>
+<status status="FAIL" start="2024-10-30T01:15:28.230839" elapsed="0.044010">200 != 300</status>
+</test>
+<kw name="Disconnect From Database" owner="DatabaseLibrary" type="TEARDOWN">
+<doc>Disconnects from the database.</doc>
+<status status="PASS" start="2024-10-30T01:15:28.274849" elapsed="0.001001"/>
+</kw>
+<doc>caso de prueba para buscar usuarios</doc>
+<status status="FAIL" start="2024-10-30T01:15:27.389566" elapsed="0.886284"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="User.Tests">User.Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
