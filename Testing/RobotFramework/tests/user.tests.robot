@@ -28,11 +28,11 @@ Crear usuarios
     ${resp}=    Call Get Request    ${HEADERS}    ${API_URL}    /person
     Should Be Equal As Integers    ${resp}[status_code]    200
     ${admin} =    Query    SELECT * FROM public."People" where nit = '4444444444';    \    True
-    ${people} =    Query    SELECT * FROM public."TestUsers";    \    True
+    ${people} =    Query    SELECT * FROM public."TestUsers" where "testCase" = 'create' and happy = true;    \    True
+    Open Browser    ${PAGE_URL}    chrome
+    sleep  2s	   
+    Login    ${admin[0]}[userName]     ${USER_PASSWORD}
     FOR    ${person}    IN    @{people}
-        Open Browser    ${PAGE_URL}    chrome
-        sleep  2s	   
-        Login    ${admin[0]}[userName]     ${USER_PASSWORD}
         Wait Until Element Is Visible	xpath=//*[@id="btnOp2"]
         Click Button   xpath=//*[@id="btnOp2"]
         Wait Until Element Is Visible	xpath=//*[@id="nit"]
@@ -46,36 +46,109 @@ Crear usuarios
         sleep  1s
         Input Text      xpath=//*[@id="lastName2"]    ${person}[lastName2]
         sleep  1s
+        #chromium
         ${date_string} =    Convert Date    ${person}[birthdate]    result_format=%m-%d-%Y
         @{date_parts}=    Split String    ${date_string}    -
         ${joined_date}=    Evaluate    ''.join(${date_parts})   
         Input Text      xpath=//*[@id="birthday"]     ${joined_date}
+        #chromium
+
+        #firefox
+        # ${date_string} =    Convert Date    ${person}[birthdate]    result_format=%Y-%m-%d
+        # Input Text    xpath=//*[@id="birthday"]    ${date_string}
+        #firefox
         sleep  1s
         Input Text      xpath=//*[@id="phoneNumber"]   ${person}[phoneNumber]
         sleep  1s
         Input Text      xpath=//*[@id="email"]   ${person}[email]
         sleep  1s
         Click Button   xpath=//*[@id="btnCreate"]	
+        Wait Until Element Is Visible	xpath=//*[@id="createSuccess"]
+        Element Should Be Visible   xpath=//*[@id="createSuccess"]
         sleep  3s
-        Close Browser        
     END
+    Close Browser  
 
-Buscar un usuario por NIT
+Buscar usuarios
     ${resp}=    Call Get Request    ${HEADERS}    ${API_URL}    /person
     #Log    ${resp}[status_code]
     Should Be Equal As Integers    ${resp}[status_code]    200
+    ${admin} =    Query    SELECT * FROM public."People" where nit = '4444444444';    \    True
     ${people} =    Query    SELECT * FROM public."People";    \    True
     #Log   ${people[0]}[userName]
+    Open Browser    ${PAGE_URL}    chrome
+    sleep  2s	   
+    Login    ${admin[0]}[userName]     ${USER_PASSWORD}
     FOR    ${person}    IN    @{people}
-        Open Browser    ${PAGE_URL}    chrome
-        sleep  2s	   
-        Login    ${person}[userName]     ${USER_PASSWORD}
-        Wait Until Element Is Visible	xpath=//*[@id="btnOp1"]
-        Click Button   xpath=//*[@id="btnOp1"]
-        Wait Until Element Is Visible	xpath=//*[@id="nit"]
-        Input Text      xpath=//*[@id="nit"]     ${person}[nit]
-        sleep  1s
-        Click Button   xpath=//*[@id="btnSearch"]	
-        sleep  3s
-        Close Browser
+        Search user    ${person}[nit]
+        Sleep    2s
+        Click Button   xpath=//*[@id="btnExit"]
+        Sleep    2s
     END
+    Close Browser
+
+Actualizar usuarios
+    ${resp}=    Call Get Request    ${HEADERS}    ${API_URL}    /person
+    Should Be Equal As Integers    ${resp}[status_code]    200
+    ${admin} =    Query    SELECT * FROM public."People" where nit = '4444444444';    \    True
+    ${people} =    Query    SELECT * FROM public."TestUsers" where "testCase" = 'update' and happy = true;    \    True
+    Open Browser    ${PAGE_URL}    chrome
+    sleep  2s	   
+    Login    ${admin[0]}[userName]     ${USER_PASSWORD}
+    FOR    ${person}    IN    @{people}
+        Search user    ${person}[nit]
+        Sleep    1s
+        Click Button   xpath=//*[@id="btnEdit"]
+        Sleep    1s
+        Wait Until Element Is Visible	xpath=//*[@id="nit"]
+        Input Text      xpath=//*[@id="fistName"]     ${person}[firstName]
+        sleep  1s
+        Input Text      xpath=//*[@id="middleName"]     ${person}[middleName]
+        sleep  1s
+        Input Text      xpath=//*[@id="lastName1"]    ${person}[lastName1]
+        sleep  1s
+        Input Text      xpath=//*[@id="lastName2"]    ${person}[lastName2]
+        sleep  1s
+        #chromium
+        ${date_string} =    Convert Date    ${person}[birthdate]    result_format=%m-%d-%Y
+        @{date_parts}=    Split String    ${date_string}    -
+        ${joined_date}=    Evaluate    ''.join(${date_parts})   
+        Input Text      xpath=//*[@id="birthday"]     ${joined_date}
+        #chromium
+
+        #firefox
+        # ${date_string} =    Convert Date    ${person}[birthdate]    result_format=%Y-%m-%d
+        # Input Text    xpath=//*[@id="birthday"]    ${date_string}
+        #firefox
+        sleep  1s
+        Input Text      xpath=//*[@id="phoneNumber"]   ${person}[phoneNumber]
+        sleep  1s
+        Input Text      xpath=//*[@id="email"]   ${person}[email]
+        sleep  1s
+        Click Button   xpath=//*[@id="btnEdit"]
+        Wait Until Element Is Visible	xpath=//*[@id="updateSuccess"]
+        Element Should Be Visible   xpath=//*[@id="updateSuccess"]
+        Sleep  3s
+        Click Button   xpath=//*[@id="btnExit"]
+        Sleep    2s
+    END
+    Close Browser
+
+Eliminar usuarios
+    ${resp}=    Call Get Request    ${HEADERS}    ${API_URL}    /person
+    Should Be Equal As Integers    ${resp}[status_code]    200
+    ${admin} =    Query    SELECT * FROM public."People" where nit = '4444444444';    \    True
+    ${people} =    Query    SELECT * FROM public."TestUsers" where "testCase" = 'delete' and happy = true;    \    True
+    Open Browser    ${PAGE_URL}    chrome
+    sleep  2s	   
+    Login    ${admin[0]}[userName]     ${USER_PASSWORD}
+    FOR    ${person}    IN    @{people}
+        Search user    ${person}[nit]
+        Sleep    2s
+        Click Button   xpath=//*[@id="btnDelete"]
+        Wait Until Element Is Visible	xpath=//*[@id="deleteSuccess"]
+        Element Should Be Visible   xpath=//*[@id="deleteSuccess"]
+        Sleep    1s
+    END
+    Close Browser
+    

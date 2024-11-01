@@ -25,10 +25,10 @@ export class LoginComponent {
         next: (data) => {
           localStorage.setItem('token', data.token)
           this.router.navigate(['/menu'])
-        }, error: (error: HttpErrorResponse) => {
+        }, error: (e: HttpErrorResponse) => {
           Swal.fire({
-            title: "Error Login",
-            html: `<p id="errorLogin">${error.error.err}</p>`,
+            title: "Login Error",
+            html: `<p id="loginError">${e.error.err}</p>`,
             icon: "error",
             showConfirmButton: false,
             timer: 1200
@@ -47,7 +47,7 @@ export class LoginComponent {
     if (!usernameRegex.test(this.username)) {
       Swal.fire({
         title: "Invalid Username",
-        text: "Usernmae must have the first capital letter, 6 lowercase letters and a number.",
+        html: '<p id="usernameError">Username must have the first capital letter, 6 lowercase letters and a number.</p>',
         icon: "info",
         showConfirmButton: false,
         timer: 1200
@@ -57,7 +57,7 @@ export class LoginComponent {
     if (!passwordRegex.test(this.password)) {
       Swal.fire({
         title: "Invalid Password",
-        text: "the password must have a minimum of 8 characters",
+        html: '<p id="passwordError">The password must have a minimum of 8 characters</p>',
         icon: "info",
         showConfirmButton: false,
         timer: 1200

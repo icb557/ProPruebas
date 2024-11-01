@@ -77,7 +77,7 @@ export class MenuComponent {
     if (!this.searchForm.valid) {
       Swal.fire({
         title: 'Invalid Nit',
-        text: 'Nit must be of 10 digits',
+        html:'<p id="searchError">Nit must have 10 digits</p>',
         icon: "error",
         showConfirmButton: false,
         timer: 1200
@@ -93,7 +93,7 @@ export class MenuComponent {
       error: (e: HttpErrorResponse) => {
         Swal.fire({
           title: "Error Searching Person",
-          text: e.error.err,
+          html:`<p id="searchError">${e.error.err}</p>`,
           icon: "error",
           showConfirmButton: false,
           timer: 1200
@@ -103,27 +103,22 @@ export class MenuComponent {
   }
 
   deletePerson() {
-    Swal.fire({
-      title: "Delete Person",
-      text: 'are you sure you want to delete it?',
-      showDenyButton: true,
-      confirmButtonText: "Yes, delete it",
-      denyButtonText: `Cancel`
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this._personService.deletePerson(String(this.searchForm.value.nit!)).subscribe({
-          next: () => {
-            Swal.fire("Person Deleted!", "", "success").then(() => {
-              this.goBack()
-            })
-          },
-          error: () => {
-            Swal.fire("Error Deleting Person", "", "error");
-          }
+    this._personService.deletePerson(String(this.searchForm.value.nit!)).subscribe({
+      next: () => {
+        Swal.fire({
+          title: "Done!",
+          html:'<p id="deleteSuccess">Person Deleted</p>',
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1200
+        }).then(() => {
+          this.goBack()
         })
-
+      },
+      error: (e: HttpErrorResponse) => {
+        Swal.fire("Error Deleting Person", `<p id="deleteError">${e.error.err}</p>`, "error");
       }
-    });
+    })
   }
 
   goBack() {
@@ -150,7 +145,8 @@ export class MenuComponent {
     this._personService.createPerson(person).subscribe({
       next: () => {
         Swal.fire({
-          title: "User created successfully",
+          title: "Success",
+          html:'<p id="createSuccess">User created successfully</p>',
           icon: "success",
           showConfirmButton: false,
           timer: 1200
@@ -162,7 +158,7 @@ export class MenuComponent {
       error: (e: HttpErrorResponse) => {
         Swal.fire({
           title: "Error Creating User",
-          text: e.error.err,
+          html: `<p id="createError">${e.error.err}</p>`,
           icon: "error",
           showConfirmButton: false,
           timer: 1200
@@ -220,7 +216,8 @@ export class MenuComponent {
     this._personService.updatePerson(updatedPerson.nit, updatedPerson).subscribe({
       next: () => {
         Swal.fire({
-          title: "User Updated successfully",
+          title: "Success",
+          html:'<p id="updateSuccess">User Updated successfully</p>',
           icon: "success",
           showConfirmButton: false,
           timer: 1200
@@ -233,6 +230,7 @@ export class MenuComponent {
       error: (e: HttpErrorResponse) => {
         Swal.fire({
           title: "Error Updating User",
+          html: `<p id="updateError">${e.error.err}</p>`,
           icon: "error",
           showConfirmButton: false,
           timer: 1200
@@ -253,7 +251,7 @@ export class MenuComponent {
     console.log(invalidfield)
     Swal.fire({
       title: 'Invalid Form',
-      text: 'some field is wrong or invalid',
+      html:'<p id="formError">Some field is wrong or invalid</p>',
       icon: "error",
       showConfirmButton: false,
       timer: 1200
