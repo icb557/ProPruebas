@@ -28,7 +28,7 @@ export class LoginComponent {
         }, error: (error: HttpErrorResponse) => {
           Swal.fire({
             title: "Error Login",
-            text: error.error.err,
+            html: `<p id="errorLogin">${error.error.err}</p>`,
             icon: "error",
             showConfirmButton: false,
             timer: 1200
