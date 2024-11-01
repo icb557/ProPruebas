@@ -2,57 +2,41 @@ import { DataTypes } from 'sequelize'
 import { sequelize } from '../database/connection.js'
 
 export const TestUser = sequelize.define('TestUser', {
+  testCase: {
+    type: DataTypes.STRING
+  },
+  happy: {
+    type: DataTypes.BOOLEAN
+  },
   nit: {
-    type: DataTypes.STRING,
-    primaryKey: true
+    type: DataTypes.STRING
   },
   firstName: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      is: /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/i
-    }
+    type: DataTypes.STRING
   },
   middleName: {
-    type: DataTypes.STRING,
-    validate: {
-      is: /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]*$/i
-    }
+    type: DataTypes.STRING
   },
   lastName1: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      is: /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/i
-    }
+    type: DataTypes.STRING
   },
   lastName2: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      is: /^[a-zA-ZáéíóúüñÁÉÍÓÚÜÑ\s]+$/i
-    }
+    type: DataTypes.STRING
   },
   birthdate: {
-    type: DataTypes.DATEONLY,
-    allowNull: false
+    type: DataTypes.DATEONLY
   },
   phoneNumber: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.STRING
   },
   email: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.STRING
   },
   userName: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
+    type: DataTypes.STRING
   },
   password: {
-    type: DataTypes.STRING,
-    allowNull: false
+    type: DataTypes.STRING
   }
 
 })
