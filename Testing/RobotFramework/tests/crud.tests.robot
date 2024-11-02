@@ -11,7 +11,7 @@ Library    String
 Library    DateTime
 
 #Variables   ../variables/user.py
-Resource    ../resources/user.res.robot
+Resource    ../resources/crud.res.robot
 *** Variables ***
 ${DBHost}         localhost
 ${DBName}         ProPruebas
@@ -20,13 +20,10 @@ ${DBPort}         5432
 ${DBUser}         ProPruebas
 ${USER_PASSWORD}    P@ssw0rd
 ${PAGE_URL}    http://localhost:4200/
-${API_URL}    http://localhost:3000/api
-&{HEADERS}     Content-Type=application/json      charset=UTF-8    Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IklzYWNjb3IyIiwibml0IjoiMTIzNDU2Nzg5MCIsImlhdCI6MTcyOTgxMjkxNH0.K-VQr-gt94iPm2EB-695JG0BVm-B1kjwvsUeQk1N90I
 
 *** Test Cases ***
 Crear usuarios
-    ${resp}=    Call Get Request    ${HEADERS}    ${API_URL}    /person
-    Should Be Equal As Integers    ${resp}[status_code]    200
+    API get calling
     ${admin} =    Query    SELECT * FROM public."People" where nit = '4444444444';    \    True
     ${people} =    Query    SELECT * FROM public."TestUsers" where "testCase" = 'create' and happy = true;    \    True
     Open Browser    ${PAGE_URL}    chrome
@@ -70,9 +67,7 @@ Crear usuarios
     Close Browser  
 
 Buscar usuarios
-    ${resp}=    Call Get Request    ${HEADERS}    ${API_URL}    /person
-    #Log    ${resp}[status_code]
-    Should Be Equal As Integers    ${resp}[status_code]    200
+    API get calling
     ${admin} =    Query    SELECT * FROM public."People" where nit = '4444444444';    \    True
     ${people} =    Query    SELECT * FROM public."People";    \    True
     #Log   ${people[0]}[userName]
@@ -88,8 +83,7 @@ Buscar usuarios
     Close Browser
 
 Actualizar usuarios
-    ${resp}=    Call Get Request    ${HEADERS}    ${API_URL}    /person
-    Should Be Equal As Integers    ${resp}[status_code]    200
+    API get calling
     ${admin} =    Query    SELECT * FROM public."People" where nit = '4444444444';    \    True
     ${people} =    Query    SELECT * FROM public."TestUsers" where "testCase" = 'update' and happy = true;    \    True
     Open Browser    ${PAGE_URL}    chrome
@@ -135,8 +129,7 @@ Actualizar usuarios
     Close Browser
 
 Eliminar usuarios
-    ${resp}=    Call Get Request    ${HEADERS}    ${API_URL}    /person
-    Should Be Equal As Integers    ${resp}[status_code]    200
+    API get calling
     ${admin} =    Query    SELECT * FROM public."People" where nit = '4444444444';    \    True
     ${people} =    Query    SELECT * FROM public."TestUsers" where "testCase" = 'delete' and happy = true;    \    True
     Open Browser    ${PAGE_URL}    chrome
