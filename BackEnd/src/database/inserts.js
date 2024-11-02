@@ -3,9 +3,16 @@ import { TestUser } from '../models/testUser.model.js'
 import { Person } from '../models/person.model.js'
 
 export async function inserts () {
-  const password = await bcrypt.hash('P@ssw0rd', 12)
+  let password = 'P@ssw0rd'
   // testUsers table
   const testUsers = [
+    // happy tests cases
+    {
+      testCase: 'login',
+      happy: true,
+      userName: 'Admipro1',
+      password
+    },
     {
       testCase: 'create',
       happy: true,
@@ -103,12 +110,38 @@ export async function inserts () {
       email: 'juan123@gmail.com',
       userName: 'Juanest9',
       password
+    },
+    // NO HAPPY TESTS CASES
+    { //  invalid userName
+      testCase: 'login',
+      happy: false,
+      userName: 'usuarioooooooo',
+      password
+    },
+    { //  invalid password
+      testCase: 'login',
+      happy: false,
+      userName: 'Admipro1',
+      password: '12345'
+    },
+    { // empty fields
+      testCase: 'login',
+      happy: false,
+      userName: '',
+      password: ''
+    },
+    { //  no registered user
+      testCase: 'login',
+      happy: false,
+      userName: 'Admipro2',
+      password
     }
   ]
 
   await TestUser.bulkCreate(testUsers)
 
   // People table
+  password = await bcrypt.hash('P@ssw0rd', 12)
   const adminUsers = [
     {
       nit: '4444444444',

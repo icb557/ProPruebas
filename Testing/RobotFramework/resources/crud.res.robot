@@ -1,7 +1,12 @@
 *** Settings ***
-Documentation       Inicio de sesión ingresando usuario y contraseña
+Documentation       casos de prueba transversales
 
 Library    SeleniumLibrary
+Library    Zoomba.APILibrary
+
+*** Variables ***
+${API_URL}    http://localhost:3000/api
+&{HEADERS}     Content-Type=application/json      charset=UTF-8    Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IklzYWNjb3IyIiwibml0IjoiMTIzNDU2Nzg5MCIsImlhdCI6MTcyOTgxMjkxNH0.K-VQr-gt94iPm2EB-695JG0BVm-B1kjwvsUeQk1N90I
 
 *** Keywords ***
 Login
@@ -16,6 +21,10 @@ Login
     sleep  1s
     Page Should Contain    Welcome!
 
+API get calling
+    ${resp}=    Call Get Request    ${HEADERS}    ${API_URL}    /person
+    Should Be Equal As Integers    ${resp}[status_code]    200
+    
 Search user
     [Arguments]  ${nit}
     Wait Until Element Is Visible	xpath=//*[@id="btnOp1"]
