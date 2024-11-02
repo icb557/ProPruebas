@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1.1 (Python 3.12.4 on win32)" generated="2024-11-01T19:26:59.148996" rpa="false" schemaversion="5">
-<suite id="s1" name="Login.Tests" source="I:\documentos\Politécnico JIC\Semestre7_2024_2\PruebasYGestionDeLaConfiguracion\ProPruebas\Testing\RobotFramework\tests\login.tests.robot">
+<robot generator="Robot 7.1.1 (Python 3.12.4 on win32)" generated="2024-11-01T21:34:31.731509" rpa="false" schemaversion="5">
+<suite id="s1" name="Crud.Tests" source="I:\documentos\Politécnico JIC\Semestre7_2024_2\PruebasYGestionDeLaConfiguracion\ProPruebas\Testing\RobotFramework\tests\crud.tests.robot">
 <kw name="Connect To Database" owner="DatabaseLibrary" type="SETUP">
-<msg time="2024-11-01T19:26:59.330589" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
-<msg time="2024-11-01T19:26:59.330589" level="INFO">Configuration file doesn't exist</msg>
-<msg time="2024-11-01T19:26:59.337589" level="INFO">Connect to DB using : psycopg2.connect(database='ProPruebas', user='ProPruebas', password=***, host='localhost', port=5432)</msg>
+<msg time="2024-11-01T21:34:32.502755" level="INFO">Looking for configuration file: 'resources\db.cfg'</msg>
+<msg time="2024-11-01T21:34:32.502755" level="INFO">Configuration file doesn't exist</msg>
+<msg time="2024-11-01T21:34:32.510757" level="INFO">Connect to DB using : psycopg2.connect(database='ProPruebas', user='ProPruebas', password=***, host='localhost', port=5432)</msg>
 <arg>psycopg2</arg>
 <arg>${DBName}</arg>
 <arg>${DBUser}</arg>
@@ -14,262 +14,266 @@
 <doc>Creates a database connection using the DB API 2.0 ``db_module`` and the parameters provided.
 Along with listed commonly used arguments (`db_name`, `db_host` etc.)
 you can set any other DB module specific parameters as key/value pairs.</doc>
-<status status="PASS" start="2024-11-01T19:26:59.329588" elapsed="0.040010"/>
+<status status="PASS" start="2024-11-01T21:34:32.501755" elapsed="0.042010"/>
 </kw>
-<test id="s1-t1" name="Login exitoso" line="40">
+<test id="s1-t1" name="Buscar usuarios con nit erroneo" line="238">
+<kw name="API get calling" owner="crud.res">
+<kw name="Call Get Request" owner="Zoomba.APILibrary">
+<msg time="2024-11-01T21:34:32.544765" level="INFO">Creating Session using : alias=getapi, url=http://localhost:3000/api, headers={'Content-Type': 'application/json', 'charset': 'UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IklzYWNjb3IyIiwibml0IjoiMTIzNDU2Nzg5MCIsImlhdCI6MTcyOTgxMjkxNH0.K-VQr-gt94iPm2EB-695JG0BVm-B1kjwvsUeQk1N90I'},                     cookies=None, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<msg time="2024-11-01T21:34:32.578773" level="INFO">GET Request : url=http://localhost:3000/api/person 
+ path_url=/api/person 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'charset': 'UTF-8', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IklzYWNjb3IyIiwibml0IjoiMTIzNDU2Nzg5MCIsImlhdCI6MTcyOTgxMjkxNH0.K-VQr-gt94iPm2EB-695JG0BVm-B1kjwvsUeQk1N90I'} 
+ body=None 
+ </msg>
+<msg time="2024-11-01T21:34:32.578773" level="INFO">GET Response : url=http://localhost:3000/api/person 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '699', 'ETag': 'W/"2bb-IP5WC0iHai3tT9NPwZ58soOrSok"', 'Date': 'Sat, 02 Nov 2024 02:34:32 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body=[{"nit":"4444444444","firstName":"admin","middleName":"","lastName1":"admin","lastName2":"admin","birthdate":"2000-02-04","phoneNumber":"3145351114","email":"admin@gmail.com","userName":"Admipro1","password":"$2b$12$Pfg67utwIb98wfHjjhxm1OCuw1wDWt6tmohD1Fx.wrfdZz/YTnH9m","createdAt":"2024-11-02T02:25:50.160Z","updatedAt":"2024-11-02T02:25:50.160Z"},{"nit":"1987654321","firstName":"Juan","middleName":"","lastName1":"Estrada","lastName2":"Velez","birthdate":"2001-02-04","phoneNumber":"3100243256","email":"juan@gmail.com","userName":"Juanest9","password":"$2b$12$Pfg67utwIb98wfHjjhxm1OCuw1wDWt6tmohD1Fx.wrfdZz/YTnH9m","createdAt":"2024-11-02T02:25:50.160Z","updatedAt":"2024-11-02T02:25:50.160Z"}] 
+ </msg>
+<msg time="2024-11-01T21:34:32.621782" level="INFO">${resp} = {'apparent_encoding': 'utf-8', 'close': &lt;bound method Response.close of &lt;Response [200]&gt;&gt;, 'connection': &lt;requests.adapters.HTTPAdapter object at 0x000001F38BDD7020&gt;, 'content': b'[{"nit":"4444444444"...</msg>
+<var>${resp}</var>
+<arg>${HEADERS}</arg>
+<arg>${API_URL}</arg>
+<arg>/person</arg>
+<doc>Generate a GET Request. This Keyword is basically a wrapper for get_request from the RequestsLibrary.</doc>
+<status status="PASS" start="2024-11-01T21:34:32.544765" elapsed="0.077017"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2024-11-01T21:34:32.621782" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${resp}[status_code]</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2024-11-01T21:34:32.621782" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-01T21:34:32.544765" elapsed="0.078018"/>
+</kw>
 <kw name="Query" owner="DatabaseLibrary">
-<msg time="2024-11-01T19:26:59.370597" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;SELECT * FROM public."TestUsers" where "testCase" = 'login' and happy = true;&lt;/code&gt;</msg>
-<msg time="2024-11-01T19:26:59.372598" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 1 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;id&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;testCase&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;happy&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;nit&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;firstName&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;middleName&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;lastName1&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;lastName2&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;birthdate&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;phoneNumber&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;email&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;userName&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;password&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;createdAt&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;updatedAt&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: #eee;"&gt;&lt;th scope="row" style="background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;1&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;login&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;True&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Admipro1&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;P@ssw0rd&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 18:47:14.796000-05:00&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 18:47:14.796000-05:00&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
-<msg time="2024-11-01T19:26:59.372598" level="INFO">${people} = [{'id': 1, 'testCase': 'login', 'happy': True, 'nit': None, 'firstName': None, 'middleName': None, 'lastName1': None, 'lastName2': None, 'birthdate': None, 'phoneNumber': None, 'email': None, 'userNam...</msg>
-<var>${people}</var>
-<arg>SELECT * FROM public."TestUsers" where "testCase" = 'login' and happy = true;</arg>
+<msg time="2024-11-01T21:34:32.622783" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;SELECT * FROM public."People" where nit = '4444444444';&lt;/code&gt;</msg>
+<msg time="2024-11-01T21:34:32.624783" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 1 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;nit&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;firstName&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;middleName&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;lastName1&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;lastName2&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;birthdate&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;phoneNumber&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;email&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;userName&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;password&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;createdAt&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;updatedAt&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: #eee;"&gt;&lt;th scope="row" style="background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;4444444444&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;admin&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;admin&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;admin&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2000-02-04&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;3145351114&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;admin@gmail.com&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Admipro1&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;$2b$12$Pfg67utwIb98wfHjjhxm1OCuw1wDWt6tmohD1Fx.wrfdZz/YTnH9m&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 21:25:50.160000-05:00&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 21:25:50.160000-05:00&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2024-11-01T21:34:32.624783" level="INFO">${admin} = [{'nit': '4444444444', 'firstName': 'admin', 'middleName': '', 'lastName1': 'admin', 'lastName2': 'admin', 'birthdate': datetime.date(2000, 2, 4), 'phoneNumber': '3145351114', 'email': 'admin@gmail.co...</msg>
+<var>${admin}</var>
+<arg>SELECT * FROM public."People" where nit = '4444444444';</arg>
 <arg>\</arg>
 <arg>True</arg>
 <doc>Runs a query with the ``select_statement`` and returns the result as list of rows.
 The type of row values depends on the database module -
 usually they are tuples or tuple-like objects.</doc>
-<status status="PASS" start="2024-11-01T19:26:59.370597" elapsed="0.002001"/>
+<status status="PASS" start="2024-11-01T21:34:32.622783" elapsed="0.002000"/>
 </kw>
-<kw name="Login">
-<kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2024-11-01T19:26:59.374598" level="INFO">Opening browser 'chrome' to base url 'http://localhost:4200/'.</msg>
-<arg>${PAGE_URL}</arg>
-<arg>chrome</arg>
-<doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2024-11-01T19:26:59.374598" elapsed="1.546773"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2024-11-01T19:27:02.921430" level="INFO">Slept 2 seconds.</msg>
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-11-01T19:27:00.921371" elapsed="2.000059"/>
-</kw>
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//*[@id="username"]</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-11-01T19:27:02.921430" elapsed="0.014004"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2024-11-01T19:27:02.936434" level="INFO">Typing text 'Admipro1' into text field 'xpath=//*[@id="username"]'.</msg>
-<arg>xpath=//*[@id="username"]</arg>
-<arg>${username}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2024-11-01T19:27:02.935434" elapsed="0.071015"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2024-11-01T19:27:04.007874" level="INFO">Slept 1 second.</msg>
-<arg>1s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-11-01T19:27:03.006449" elapsed="1.001425"/>
-</kw>
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//*[@id="password"]</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-11-01T19:27:04.007874" elapsed="0.012005"/>
-</kw>
-<kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2024-11-01T19:27:04.019879" level="INFO">Typing text 'P@ssw0rd' into text field 'xpath=//*[@id="password"]'.</msg>
-<arg>xpath=//*[@id="password"]</arg>
-<arg>${password}</arg>
-<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2024-11-01T19:27:04.019879" elapsed="0.054012"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2024-11-01T19:27:05.074276" level="INFO">Slept 1 second.</msg>
-<arg>1s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-11-01T19:27:04.073891" elapsed="1.000385"/>
-</kw>
-<kw name="Click Button" owner="SeleniumLibrary">
-<msg time="2024-11-01T19:27:05.074276" level="INFO">Clicking button 'xpath=//*[@id="btnLogin"]'.</msg>
-<arg>xpath=//*[@id="btnLogin"]</arg>
-<doc>Clicks the button identified by ``locator``.</doc>
-<status status="PASS" start="2024-11-01T19:27:05.074276" elapsed="0.038000"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2024-11-01T19:27:06.112353" level="INFO">Slept 1 second.</msg>
-<arg>1s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-11-01T19:27:05.112276" elapsed="1.000077"/>
-</kw>
-<if>
-<branch type="IF" condition="${happy} == ${True}">
-<kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2024-11-01T19:27:06.121355" level="INFO">Current page contains text 'Welcome!'.</msg>
-<arg>${assertionArg}</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2024-11-01T19:27:06.112353" elapsed="0.009002"/>
-</kw>
-<status status="PASS" start="2024-11-01T19:27:06.112353" elapsed="0.009002"/>
-</branch>
-<branch type="ELSE">
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>${assertionArg}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2024-11-01T19:27:06.121355" elapsed="0.000000"/>
-</kw>
-<kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<arg>${assertionArg}</arg>
-<doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2024-11-01T19:27:06.121355" elapsed="0.000000"/>
-</kw>
-<status status="NOT RUN" start="2024-11-01T19:27:06.121355" elapsed="0.000000"/>
-</branch>
-<status status="PASS" start="2024-11-01T19:27:06.112353" elapsed="0.009002"/>
-</if>
-<kw name="Close Browser" owner="SeleniumLibrary">
-<doc>Closes the current browser.</doc>
-<status status="PASS" start="2024-11-01T19:27:06.121355" elapsed="2.115621"/>
-</kw>
-<arg>${people[0]}[userName]</arg>
-<arg>${people[0]}[password]</arg>
-<arg>${True}</arg>
-<status status="PASS" start="2024-11-01T19:26:59.373598" elapsed="8.863378"/>
-</kw>
-<status status="PASS" start="2024-11-01T19:26:59.369598" elapsed="8.867378"/>
-</test>
-<test id="s1-t2" name="Usuario incorrecto" line="44">
 <kw name="Query" owner="DatabaseLibrary">
-<msg time="2024-11-01T19:27:08.237976" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;SELECT * FROM public."TestUsers" where "testCase" = 'login' and happy = false;&lt;/code&gt;</msg>
-<msg time="2024-11-01T19:27:08.238976" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 4 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;id&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;testCase&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;happy&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;nit&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;firstName&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;middleName&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;lastName1&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;lastName2&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;birthdate&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;phoneNumber&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;email&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;userName&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;password&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;createdAt&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;updatedAt&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: #eee;"&gt;&lt;th scope="row" style="background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;9&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;login&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;False&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;usuarioooooooo&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;P@ssw0rd&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 18:47:14.796000-05:00&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 18:47:14.796000-05:00&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th scope="row" style="background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;1&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;10&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;login&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;False&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Admipro1&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;12345&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 18:47:14.796000-05:00&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 18:47:14.796000-05:00&lt;/td&gt;&lt;/tr&gt;&lt;tr style="background-color: #eee;"&gt;&lt;th scope="row" style="background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;11&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;login&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;False&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 18:47:14.796000-05:00&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 18:47:14.796000-05:00&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th scope="row" style="background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;3&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;12&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;login&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;False&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Admipro2&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;P@ssw0rd&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 18:47:14.796000-05:00&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 18:47:14.796000-05:00&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
-<msg time="2024-11-01T19:27:08.238976" level="INFO">${people} = [{'id': 9, 'testCase': 'login', 'happy': False, 'nit': None, 'firstName': None, 'middleName': None, 'lastName1': None, 'lastName2': None, 'birthdate': None, 'phoneNumber': None, 'email': None, 'userNa...</msg>
+<msg time="2024-11-01T21:34:32.624783" level="INFO" html="true">Executing sql:&lt;br&gt;&lt;code style="font-weight: bold;"&gt;SELECT * FROM public."TestUsers" where "testCase" = 'search' and happy = false;&lt;/code&gt;</msg>
+<msg time="2024-11-01T21:34:32.625783" level="INFO" html="true">&lt;div style="max-width: 100%; overflow-x: auto;"&gt;&lt;table style="width: auto; border-collapse: collapse; border: 2px solid rgb(140 140 140)"&gt;&lt;caption style="text-align: left; font-weight: bold; padding: 5px;"&gt;Query returned 2 rows&lt;/caption&gt;&lt;tr&gt;&lt;th scope="col" style="background-color: #d6ecd4; border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;Row&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;id&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;testCase&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;happy&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;nit&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;firstName&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;middleName&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;lastName1&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;lastName2&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;birthdate&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;phoneNumber&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;email&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;userName&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;password&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;createdAt&lt;/th&gt;&lt;th scope="col" style="background-color: #505050; color: #fff;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;updatedAt&lt;/th&gt;&lt;/tr&gt;&lt;tr style="background-color: #eee;"&gt;&lt;th scope="row" style="background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;0&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;19&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;search&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;False&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;19876543&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 21:25:49.931000-05:00&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 21:25:49.931000-05:00&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th scope="row" style="background-color: #d6ecd4;border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;1&lt;/th&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;20&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;search&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;False&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;1000000000&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;None&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 21:25:49.931000-05:00&lt;/td&gt;&lt;td style="border: 1px solid rgb(160 160 160);padding: 8px 10px;text-align: center;"&gt;2024-11-01 21:25:49.931000-05:00&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg time="2024-11-01T21:34:32.625783" level="INFO">${people} = [{'id': 19, 'testCase': 'search', 'happy': False, 'nit': '19876543', 'firstName': None, 'middleName': None, 'lastName1': None, 'lastName2': None, 'birthdate': None, 'phoneNumber': None, 'email': None,...</msg>
 <var>${people}</var>
-<arg>SELECT * FROM public."TestUsers" where "testCase" = 'login' and happy = false;</arg>
+<arg>SELECT * FROM public."TestUsers" where "testCase" = 'search' and happy = false;</arg>
 <arg>\</arg>
 <arg>True</arg>
 <doc>Runs a query with the ``select_statement`` and returns the result as list of rows.
 The type of row values depends on the database module -
 usually they are tuples or tuple-like objects.</doc>
-<status status="PASS" start="2024-11-01T19:27:08.237976" elapsed="0.001000"/>
+<status status="PASS" start="2024-11-01T21:34:32.624783" elapsed="0.001000"/>
 </kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2024-11-01T19:27:08.238976" level="INFO">${assertionArg} = //*[@id="usernameError"]</msg>
-<var>${assertionArg}</var>
-<arg>//*[@id="usernameError"]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2024-11-01T19:27:08.238976" elapsed="0.000000"/>
-</kw>
-<kw name="Login">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2024-11-01T19:27:08.239976" level="INFO">Opening browser 'chrome' to base url 'http://localhost:4200/'.</msg>
+<msg time="2024-11-01T21:34:32.625783" level="INFO">Opening browser 'chrome' to base url 'http://localhost:4200/'.</msg>
 <arg>${PAGE_URL}</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2024-11-01T19:27:08.239976" elapsed="1.531606"/>
+<status status="PASS" start="2024-11-01T21:34:32.625783" elapsed="1.607614"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2024-11-01T19:27:11.772776" level="INFO">Slept 2 seconds.</msg>
+<msg time="2024-11-01T21:34:36.234552" level="INFO">Slept 2 seconds.</msg>
 <arg>2s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2024-11-01T19:27:09.771582" elapsed="2.001194"/>
+<status status="PASS" start="2024-11-01T21:34:34.234398" elapsed="2.000154"/>
 </kw>
+<kw name="Login" owner="crud.res">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>xpath=//*[@id="username"]</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2024-11-01T19:27:11.772776" elapsed="0.013003"/>
+<status status="PASS" start="2024-11-01T21:34:36.235553" elapsed="0.015004"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2024-11-01T19:27:11.785779" level="INFO">Typing text 'usuarioooooooo' into text field 'xpath=//*[@id="username"]'.</msg>
+<msg time="2024-11-01T21:34:36.251558" level="INFO">Typing text 'Admipro1' into text field 'xpath=//*[@id="username"]'.</msg>
 <arg>xpath=//*[@id="username"]</arg>
 <arg>${username}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2024-11-01T19:27:11.785779" elapsed="0.056013"/>
+<status status="PASS" start="2024-11-01T21:34:36.250557" elapsed="0.069016"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-01T21:34:37.320718" level="INFO">Slept 1 second.</msg>
 <arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="FAIL" start="2024-11-01T19:27:11.841792" elapsed="0.240566">Execution terminated by signal</status>
+<status status="PASS" start="2024-11-01T21:34:36.320573" elapsed="1.000145"/>
 </kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
 <arg>xpath=//*[@id="password"]</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2024-11-01T19:27:12.082358" elapsed="0.000000"/>
+<status status="PASS" start="2024-11-01T21:34:37.320718" elapsed="0.018004"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-01T21:34:37.338722" level="INFO">Typing text 'P@ssw0rd' into text field 'xpath=//*[@id="password"]'.</msg>
 <arg>xpath=//*[@id="password"]</arg>
 <arg>${password}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="NOT RUN" start="2024-11-01T19:27:12.083357" elapsed="0.000000"/>
+<status status="PASS" start="2024-11-01T21:34:37.338722" elapsed="0.066016"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-01T21:34:38.406038" level="INFO">Slept 1 second.</msg>
 <arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="NOT RUN" start="2024-11-01T19:27:12.083357" elapsed="0.000000"/>
+<status status="PASS" start="2024-11-01T21:34:37.404738" elapsed="1.001300"/>
 </kw>
 <kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-01T21:34:38.406038" level="INFO">Clicking button 'xpath=//*[@id="btnLogin"]'.</msg>
 <arg>xpath=//*[@id="btnLogin"]</arg>
 <doc>Clicks the button identified by ``locator``.</doc>
-<status status="NOT RUN" start="2024-11-01T19:27:12.083357" elapsed="0.000000"/>
+<status status="PASS" start="2024-11-01T21:34:38.406038" elapsed="0.044010"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-01T21:34:39.450412" level="INFO">Slept 1 second.</msg>
 <arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="NOT RUN" start="2024-11-01T19:27:12.083357" elapsed="0.000000"/>
+<status status="PASS" start="2024-11-01T21:34:38.450048" elapsed="1.000364"/>
 </kw>
-<if>
-<branch type="IF" condition="${happy} == ${True}">
 <kw name="Page Should Contain" owner="SeleniumLibrary">
-<arg>${assertionArg}</arg>
+<msg time="2024-11-01T21:34:39.458414" level="INFO">Current page contains text 'Welcome!'.</msg>
+<arg>Welcome!</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<status status="NOT RUN" start="2024-11-01T19:27:12.083357" elapsed="0.000000"/>
+<status status="PASS" start="2024-11-01T21:34:39.450412" elapsed="0.008002"/>
 </kw>
-<status status="NOT RUN" start="2024-11-01T19:27:12.083357" elapsed="0.000000"/>
-</branch>
-<branch type="ELSE">
+<arg>${admin[0]}[userName]</arg>
+<arg>${USER_PASSWORD}</arg>
+<status status="PASS" start="2024-11-01T21:34:36.234552" elapsed="3.224863"/>
+</kw>
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>${assertionArg}</arg>
+<arg>xpath=//*[@id="btnOp1"]</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2024-11-01T19:27:12.083357" elapsed="0.000000"/>
+<status status="PASS" start="2024-11-01T21:34:39.459415" elapsed="0.009001"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-01T21:34:39.469417" level="INFO">Clicking button 'xpath=//*[@id="btnOp1"]'.</msg>
+<arg>xpath=//*[@id="btnOp1"]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-01T21:34:39.468416" elapsed="0.039010"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[@id="nit"]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-01T21:34:39.508426" elapsed="0.012002"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-01T21:34:39.521429" level="INFO">Typing text '19876543' into text field 'xpath=//*[@id="nit"]'.</msg>
+<arg>xpath=//*[@id="nit"]</arg>
+<arg>${person}[nit]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-01T21:34:39.521429" elapsed="0.063013"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-01T21:34:40.585853" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-11-01T21:34:39.585443" elapsed="1.000410"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-01T21:34:40.585853" level="INFO">Clicking button 'xpath=//*[@id="btnSearch"]'.</msg>
+<arg>xpath=//*[@id="btnSearch"]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-01T21:34:40.585853" elapsed="0.046011"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[@id="searchError"]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-01T21:34:40.631864" elapsed="0.012002"/>
 </kw>
 <kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<arg>${assertionArg}</arg>
+<msg time="2024-11-01T21:34:40.651868" level="INFO">Element 'xpath=//*[@id="searchError"]' is displayed.</msg>
+<arg>xpath=//*[@id="searchError"]</arg>
 <doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2024-11-01T19:27:12.083357" elapsed="0.000000"/>
+<status status="PASS" start="2024-11-01T21:34:40.643866" elapsed="0.008002"/>
 </kw>
-<status status="NOT RUN" start="2024-11-01T19:27:12.083357" elapsed="0.001002"/>
-</branch>
-<status status="NOT RUN" start="2024-11-01T19:27:12.083357" elapsed="0.001002"/>
-</if>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-01T21:34:43.652124" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-11-01T21:34:40.651868" elapsed="3.000256"/>
+</kw>
+<var name="${person}">{'id': 19, 'testCase': 'search', 'happy': False, 'nit': '19876543', 'firstName': None, 'middleName': None, 'lastName1': None, 'lastName2': None, 'birthdate': None, 'phoneNumber': None, 'email': None, ...</var>
+<status status="PASS" start="2024-11-01T21:34:39.508426" elapsed="4.143698"/>
+</iter>
+<iter>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[@id="nit"]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-01T21:34:43.652124" elapsed="0.008004"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-11-01T21:34:43.660128" level="INFO">Typing text '1000000000' into text field 'xpath=//*[@id="nit"]'.</msg>
+<arg>xpath=//*[@id="nit"]</arg>
+<arg>${person}[nit]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-01T21:34:43.660128" elapsed="0.064014"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-01T21:34:44.724588" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-11-01T21:34:43.724142" elapsed="1.000446"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-11-01T21:34:44.724588" level="INFO">Clicking button 'xpath=//*[@id="btnSearch"]'.</msg>
+<arg>xpath=//*[@id="btnSearch"]</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-11-01T21:34:44.724588" elapsed="0.031009"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//*[@id="searchError"]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-01T21:34:44.756597" elapsed="0.024006"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2024-11-01T21:34:44.794605" level="INFO">Element 'xpath=//*[@id="searchError"]' is displayed.</msg>
+<arg>xpath=//*[@id="searchError"]</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2024-11-01T21:34:44.780603" elapsed="0.014002"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2024-11-01T21:34:47.795665" level="INFO">Slept 3 seconds.</msg>
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2024-11-01T21:34:44.795606" elapsed="3.000059"/>
+</kw>
+<var name="${person}">{'id': 20, 'testCase': 'search', 'happy': False, 'nit': '1000000000', 'firstName': None, 'middleName': None, 'lastName1': None, 'lastName2': None, 'birthdate': None, 'phoneNumber': None, 'email': None...</var>
+<status status="PASS" start="2024-11-01T21:34:43.652124" elapsed="4.143541"/>
+</iter>
+<var>${person}</var>
+<value>@{people}</value>
+<status status="PASS" start="2024-11-01T21:34:39.507426" elapsed="8.288239"/>
+</for>
 <kw name="Close Browser" owner="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="NOT RUN" start="2024-11-01T19:27:12.084359" elapsed="0.000000"/>
+<status status="PASS" start="2024-11-01T21:34:47.795665" elapsed="2.134644"/>
 </kw>
-<arg>${people[0]}[userName]</arg>
-<arg>${people[0]}[password]</arg>
-<arg>${False}</arg>
-<arg>${assertionArg}</arg>
-<status status="FAIL" start="2024-11-01T19:27:08.238976" elapsed="3.845383">Execution terminated by signal</status>
-</kw>
-<status status="FAIL" start="2024-11-01T19:27:08.237976" elapsed="3.846383">Execution terminated by signal</status>
-</test>
-<test id="s1-t3" name="Contraseña incorrecta" line="49">
-<tag>robot:exit</tag>
-<status status="FAIL" start="2024-11-01T19:27:12.085358" elapsed="0.000000">Test execution stopped due to a fatal error.</status>
-</test>
-<test id="s1-t4" name="Campos vacios" line="54">
-<tag>robot:exit</tag>
-<status status="FAIL" start="2024-11-01T19:27:12.086358" elapsed="0.000000">Test execution stopped due to a fatal error.</status>
-</test>
-<test id="s1-t5" name="usuario no registrado" line="59">
-<tag>robot:exit</tag>
-<status status="FAIL" start="2024-11-01T19:27:12.087358" elapsed="0.000000">Test execution stopped due to a fatal error.</status>
+<status status="PASS" start="2024-11-01T21:34:32.543765" elapsed="17.386544"/>
 </test>
 <kw name="Disconnect From Database" owner="DatabaseLibrary" type="TEARDOWN">
 <doc>Disconnects from the database.</doc>
-<status status="PASS" start="2024-11-01T19:27:12.088359" elapsed="0.000000"/>
+<status status="PASS" start="2024-11-01T21:34:49.931309" elapsed="0.000000"/>
 </kw>
-<doc>casos de prueba para el inicio de sesión</doc>
-<status status="FAIL" start="2024-11-01T19:26:59.149996" elapsed="12.938363"/>
+<doc>caso de prueba para buscar usuarios</doc>
+<status status="PASS" start="2024-11-01T21:34:31.732509" elapsed="18.198800"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="4" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="1" skip="0" info="combined" combined="NOT robot:exit">NOT robot:exit</stat>
 </tag>
 <suite>
-<stat pass="1" fail="4" skip="0" id="s1" name="Login.Tests">Login.Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1" name="Crud.Tests">Crud.Tests</stat>
 </suite>
 </statistics>
 <errors>

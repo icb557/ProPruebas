@@ -100,15 +100,15 @@ export async function inserts () {
     {
       testCase: 'delete',
       happy: true,
-      nit: '1987654321',
-      firstName: 'Juan',
-      middleName: 'Jose',
-      lastName1: 'Estrada',
-      lastName2: 'Velez',
-      birthdate: '2001-02-04',
-      phoneNumber: '3100243256',
-      email: 'juan123@gmail.com',
-      userName: 'Juanest9',
+      nit: '1111111111',
+      firstName: 'pedro',
+      middleName: '',
+      lastName1: 'sanchez',
+      lastName2: 'perez',
+      birthdate: '2004-01-06',
+      phoneNumber: '3564695783',
+      email: 'pedro@gmail.com',
+      userName: 'Pedrosa0',
       password
     },
     // NO HAPPY TESTS CASES
@@ -135,6 +135,100 @@ export async function inserts () {
       happy: false,
       userName: 'Admipro2',
       password
+    },
+    { // invalid int
+      testCase: 'create',
+      happy: false,
+      nit: '123',
+      firstName: 'isac',
+      middleName: '',
+      lastName1: 'cortes',
+      lastName2: 'buitrago',
+      birthdate: '2001-02-04',
+      phoneNumber: '3145351114',
+      email: 'isac@gmail.com',
+      userName: 'Isaccor3',
+      password
+    },
+    { // underage person
+      testCase: 'create',
+      happy: false,
+      nit: '1234567890',
+      firstName: 'isac',
+      middleName: '',
+      lastName1: 'cortes',
+      lastName2: 'buitrago',
+      birthdate: '2011-02-04',
+      phoneNumber: '3145351114',
+      email: 'isac@gmail.com',
+      userName: 'Isaccor3',
+      password
+    },
+    { // invalid mail
+      testCase: 'create',
+      happy: false,
+      nit: '1234567890',
+      firstName: 'isac',
+      middleName: '',
+      lastName1: 'cortes',
+      lastName2: 'buitrago',
+      birthdate: '2001-02-04',
+      phoneNumber: '3145351114',
+      email: 'isacgmail.com',
+      userName: 'Isaccor3',
+      password
+    },
+    { // registered user
+      testCase: 'create',
+      happy: false,
+      nit: '4444444444',
+      firstName: 'isac',
+      middleName: '',
+      lastName1: 'cortes',
+      lastName2: 'buitrago',
+      birthdate: '2001-02-04',
+      phoneNumber: '3145351114',
+      email: 'isacgmail.com',
+      userName: 'Isaccor3',
+      password
+    },
+    { // invalid phone
+      testCase: 'update',
+      happy: false,
+      nit: '1987654321',
+      firstName: 'Juan',
+      middleName: 'Jose',
+      lastName1: 'Estrada',
+      lastName2: 'Velez',
+      birthdate: '2001-02-04',
+      phoneNumber: '1234',
+      email: 'juan123@gmail.com',
+      userName: 'Juanest9',
+      password
+    },
+    { // invalid date
+      testCase: 'update',
+      happy: false,
+      nit: '1987654321',
+      firstName: 'Juan',
+      middleName: 'Jose',
+      lastName1: 'Estrada',
+      lastName2: 'Velez',
+      birthdate: '2012-02-04',
+      phoneNumber: '3100243256',
+      email: 'juan123@gmail.com',
+      userName: 'Juanest9',
+      password
+    },
+    { // invalid nit
+      testCase: 'search',
+      happy: false,
+      nit: '19876543'
+    },
+    { // not registered person
+      testCase: 'search',
+      happy: false,
+      nit: '1000000000'
     }
   ]
 
@@ -154,7 +248,20 @@ export async function inserts () {
       email: 'admin@gmail.com',
       userName: 'Admipro1',
       password
-    }]
+    },
+    {
+      nit: '1987654321',
+      firstName: 'Juan',
+      middleName: '',
+      lastName1: 'Estrada',
+      lastName2: 'Velez',
+      birthdate: '2001-02-04',
+      phoneNumber: '3100243256',
+      email: 'juan@gmail.com',
+      userName: 'Juanest9',
+      password
+    }
+  ]
 
   await Person.bulkCreate(adminUsers)
 }

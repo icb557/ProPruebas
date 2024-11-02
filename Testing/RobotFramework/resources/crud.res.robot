@@ -26,11 +26,16 @@ API get calling
     Should Be Equal As Integers    ${resp}[status_code]    200
     
 Search user
-    [Arguments]  ${nit}
+    [Arguments]  ${nit}    ${assertionArg}=User
     Wait Until Element Is Visible	xpath=//*[@id="btnOp1"]
     Click Button   xpath=//*[@id="btnOp1"]
     Wait Until Element Is Visible	xpath=//*[@id="nit"]
     Input Text      xpath=//*[@id="nit"]     ${nit}
     sleep  1s
     Click Button   xpath=//*[@id="btnSearch"]
-    Page Should Contain    User
+    IF    ${assertionArg} == User
+        Page Should Contain    ${assertionArg}
+    ELSE
+        Wait Until Element Is Visible    ${assertionArg}
+        Element Should Be Visible    ${assertionArg}
+    END 
