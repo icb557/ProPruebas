@@ -47,7 +47,7 @@ export class LoginComponent {
     if (!usernameRegex.test(this.username)) {
       Swal.fire({
         title: "Invalid Username",
-        html:'<p id="usernameError">Username must have the first capital letter, 6 lowercase letters and a number.</p>',
+        html: '<p id="usernameError">Username must have the first capital letter, 6 lowercase letters and a number.</p>',
         icon: "info",
         showConfirmButton: false,
         timer: 1200
@@ -57,7 +57,7 @@ export class LoginComponent {
     if (!passwordRegex.test(this.password)) {
       Swal.fire({
         title: "Invalid Password",
-        html:'<p id="passwordError">The password must have a minimum of 8 characters</p>',
+        html: '<p id="passwordError">The password must have a minimum of 8 characters</p>',
         icon: "info",
         showConfirmButton: false,
         timer: 1200
