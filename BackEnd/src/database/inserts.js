@@ -248,18 +248,6 @@ export async function inserts () {
       email: 'admin@gmail.com',
       userName: 'Admipro1',
       password
-    },
-    {
-      nit: '1987654321',
-      firstName: 'Juan',
-      middleName: '',
-      lastName1: 'Estrada',
-      lastName2: 'Velez',
-      birthdate: '2001-02-04',
-      phoneNumber: '3100243256',
-      email: 'juan@gmail.com',
-      userName: 'Juanest9',
-      password
     }
   ]
 

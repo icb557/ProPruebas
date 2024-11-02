@@ -5,6 +5,7 @@ Suite Teardown    Disconnect From Database
 
 Library    SeleniumLibrary
 Library    DatabaseLibrary
+Library    ScreenCapLibrary
 
 *** Variables ***
 ${DBHost}         localhost
@@ -34,12 +35,15 @@ Login
         Wait Until Element Is Visible    ${assertionArg}
         Element Should Be Visible    ${assertionArg}
     END 
+    Capture Page Screenshot    screenshots/Login.png
     Close Browser
 
 *** Test Cases ***
 Login exitoso
     ${people} =    Query    SELECT * FROM public."TestUsers" where "testCase" = 'login' and happy = true;    \    True
+    Start Video Recording    name=screenRecordings/loginRecording
     Login    ${people[0]}[userName]    ${people[0]}[password]   ${True}
+    Stop Video Recording
     
 Usuario incorrecto
     ${people} =    Query    SELECT * FROM public."TestUsers" where "testCase" = 'login' and happy = false;    \    True

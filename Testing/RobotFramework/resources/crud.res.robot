@@ -33,7 +33,7 @@ Search user
     Input Text      xpath=//*[@id="nit"]     ${nit}
     sleep  1s
     Click Button   xpath=//*[@id="btnSearch"]
-    IF    ${assertionArg} == User
+    IF    '${assertionArg}' == 'User'
         Page Should Contain    ${assertionArg}
     ELSE
         Wait Until Element Is Visible    ${assertionArg}
