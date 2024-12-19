@@ -72,7 +72,7 @@ Buscar usuarios
     ${admin} =    Query    SELECT * FROM public."People" where nit = '4444444444';    \    True
     ${people} =    Query    SELECT * FROM public."People";    \    True
     #Log   ${people[0]}[userName]
-    Open Browser    ${PAGE_URL}    chrome
+    Open Browser    ${PAGE_URL}    firefox
     sleep  2s	   
     Login    ${admin[0]}[userName]     ${USER_PASSWORD}
     FOR    ${person}    IN    @{people}
@@ -87,7 +87,7 @@ Actualizar usuarios
     API get calling
     ${admin} =    Query    SELECT * FROM public."People" where nit = '4444444444';    \    True
     ${people} =    Query    SELECT * FROM public."TestUsers" where "testCase" = 'update' and happy = true;    \    True
-    Open Browser    ${PAGE_URL}    chrome
+    Open Browser    ${PAGE_URL}    edge
     sleep  2s	   
     Login    ${admin[0]}[userName]     ${USER_PASSWORD}
     FOR    ${person}    IN    @{people}

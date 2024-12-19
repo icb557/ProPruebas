@@ -5,13 +5,15 @@
   "scripts": {
     "start": "concurrently \"cd backend && npm run dev\" \"cd ..\" \"cd frontend && ng serve\"",
     "install": "concurrently \"cd backend && npm install\" \"cd ..\" \"cd frontend && npm install\" \"cd ..\" \"cd backend && mkdir uploads\" ",
-    "sync": "node ./backend/src/sync.js"
+    "sync": "node ./backend/src/sync.js",
+    "sonar-scanner": "node_modules/sonar-scanner/bin/sonar-scanner"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "concurrently": "9.0.1"
+    "concurrently": "9.0.1",
+    "sonar-scanner": "^3.1.0"
   }
 }

@@ -1,0 +1,28 @@
+1730557779770	geckodriver	INFO	Listening on 127.0.0.1:59876
+1730557782822	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "59877" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\Usuario\\AppData\\Local\\Temp\\rust_mozprofilepR3liZ"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+Dynamically enable window occlusion 0
+1730557783105	Marionette	INFO	Marionette enabled
+1730557783280	Marionette	INFO	Listening on port 59885
+WebDriver BiDi listening on ws://127.0.0.1:59877
+Read port: 59885
+1730557783408	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:59877/devtools/browser/0a05812e-7194-4fea-8776-98cb0b171415
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:4200."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: http://localhost:4200."
+1730557815540	Marionette	INFO	Stopped listening on port 59885
+Dynamically enable window occlusion 1
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
+console.error: "Could not download new icon" ({})
