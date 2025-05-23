@@ -33,4 +33,8 @@ export class PersonService {
   updatePerson(nit: string, person: Person): Observable<Person> {
     return this.http.put<Person>(`${this.myAppUrl}${this.myApiUrl}/${nit}`, person)
   }
+
+  getPersonXmlReport(): Observable<string> {
+    return this.http.get(`${this.myAppUrl}${this.myApiUrl}/report/xml`, { responseType: 'text' })
+  }
 }

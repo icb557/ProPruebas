@@ -134,13 +134,13 @@ export class MenuComponent {
 
     const person: Person = {
       nit: String(this.personForm.value.nit!),
-      firstName: this.personForm.value.firstName!,
-      middleName: this.personForm.value.middleName!,
-      lastName1: this.personForm.value.lastName1!,
-      lastName2: this.personForm.value.lastName2!,
+      firstName: this.personForm.value.firstName!.trim(),
+      middleName: this.personForm.value.middleName!.trim(),
+      lastName1: this.personForm.value.lastName1!.trim(),
+      lastName2: this.personForm.value.lastName2!.trim(),
       birthdate: this.personForm.value.birthdate!,
       phoneNumber: String(this.personForm.value.phoneNumber!),
-      email: this.personForm.value.email!
+      email: this.personForm.value.email!.trim()
     }
     this._personService.createPerson(person).subscribe({
       next: () => {
@@ -256,6 +256,47 @@ export class MenuComponent {
       showConfirmButton: false,
       timer: 1200
     })
+  }
+
+  generateXmlReport() {
+    this._personService.getPersonXmlReport().subscribe({
+      next: (xmlData) => {
+        // Create a blob from the XML data
+        const blob = new Blob([xmlData], { type: 'application/xml' });
+
+        // Create a URL for the blob
+        const url = window.URL.createObjectURL(blob);
+
+        // Create a link element
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'people_report.xml'; // Set the desired file name
+
+        // Append the link to the body, click it, and then remove it
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        // Revoke the blob URL to free up resources
+        window.URL.revokeObjectURL(url);
+
+        Swal.fire({
+          title: 'Report Generated',
+          text: 'The XML report has been downloaded.',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      },
+      error: (e: HttpErrorResponse) => {
+        Swal.fire({
+          title: 'Error Generating Report',
+          html: `<p id="reportError">${e.error?.message || e.message}</p>`,
+          icon: 'error',
+          showConfirmButton: true
+        });
+      }
+    });
   }
 
 }

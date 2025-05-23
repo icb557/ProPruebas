@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt'
 import { Person } from '../models/person.model.js'
 import jwt from 'jsonwebtoken'
+import { create } from 'xmlbuilder2'
 
 export class PersonController {
   getAllPeople = async (req, res) => {
@@ -103,6 +104,60 @@ export class PersonController {
       return res.json({ token })
     } catch (error) {
       return res.status(500).json({ message: error.message })
+    }
+  }
+
+  getPeopleXmlReport = async (req, res) => {
+    try {
+      const people = await Person.findAll({
+        attributes: { exclude: ['password', 'createdAt', 'updatedAt'] }
+      })
+
+      if (!people || people.length === 0) {
+        return res.status(404).json({ message: 'No people found to generate a report.' })
+      }
+
+      const totalPeople = people.length
+      const monthCounts = new Array(12).fill(0)
+      const monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+      ]
+
+      people.forEach(person => {
+        if (person.birthdate) {
+          // Birthdate is DATEONLY (YYYY-MM-DD), getMonth() is 0-indexed
+          const birthMonth = new Date(person.birthdate).getMonth()
+          monthCounts[birthMonth]++
+        }
+      })
+
+      const root = create({ version: '1.0' }).ele('peopleReport')
+      root.ele('totalPeople').txt(totalPeople.toString())
+
+      const birthdayDistribution = root.ele('birthdayDistribution')
+      monthCounts.forEach((count, index) => {
+        const percentage = totalPeople > 0 ? ((count / totalPeople) * 100).toFixed(2) : '0.00'
+        birthdayDistribution.ele('month', { name: monthNames[index] })
+          .ele('count').txt(count.toString()).up()
+          .ele('percentage').txt(percentage + '%').up()
+      })
+
+      const peopleData = root.ele('peopleData')
+      people.forEach(person => {
+        const personElement = peopleData.ele('person')
+        Object.entries(person.toJSON()).forEach(([key, value]) => {
+          if (value !== null && value !== undefined) {
+            personElement.ele(key).txt(value.toString())
+          }
+        })
+      })
+
+      const xml = root.end({ prettyPrint: true })
+      res.header('Content-Type', 'application/xml')
+      res.status(200).send(xml)
+    } catch (error) {
+      return res.status(500).json({ message: 'Error generating XML report: ' + error.message })
     }
   }
 }
