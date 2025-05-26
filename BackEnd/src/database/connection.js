@@ -8,6 +8,17 @@ export const sequelize = new Sequelize(
   {
     host: config.database.host,
     port: config.database.port,
-    dialect: 'postgres'
+    dialect: 'postgres',
+    dialectOptions: config.env !== 'development'
+      ? {
+          ssl: {
+            require: true,
+            rejectUnauthorized: true
+            // For AWS RDS and other managed databases, you might need to add the CA certificate:
+            // ca: fs.readFileSync('/path/to/your/ca-certificate.pem').toString(),
+          }
+        }
+      : {}, // No SSL options for development by default or other environments
+    logging: false // Disable logging or configure as needed
   }
 )
