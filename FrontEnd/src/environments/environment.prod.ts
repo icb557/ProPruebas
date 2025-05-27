@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  appUrl: process.env['BACKEND_URL'] || 'http://your-aws-backend-url:3000/'
+  appUrl: 'http://10.0.1.100:3000/'
 }; 
