@@ -12,8 +12,8 @@ export const sequelize = new Sequelize(
     dialectOptions: config.env !== 'development'
       ? {
           ssl: {
-            require: true,
-            rejectUnauthorized: true
+            require: false,
+            rejectUnauthorized: false
             // For AWS RDS and other managed databases, you might need to add the CA certificate:
             // ca: fs.readFileSync('/path/to/your/ca-certificate.pem').toString(),
           }
